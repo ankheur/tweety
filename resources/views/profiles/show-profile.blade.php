@@ -2,7 +2,7 @@
     <header class="mb-6 relative">
 
         <div class="relative">
-            <img src="/images/good cop.jpg" alt="" class="mb-2 rounded-lg" height="150px">
+            <img src="{{ asset('images/good cop.jpg') }}" alt="" class="mb-2 rounded-lg" height="150px">
     
             <img src="{{ $user->avatar }}" alt="avatar" class="rounded-full mr-2 absolute bottom-0 transform -translate-x-1/2 translate-y-1/2" width="150" style="left:50%;">
     
