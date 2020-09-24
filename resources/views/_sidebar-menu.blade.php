@@ -5,12 +5,12 @@
     <li>
         <a href="{{ route('explore') }}" class="font-bold text-lg mb-4 block">Explore</a>
     </li>
-    <li>
+    {{-- <li>
         <a href="" class="font-bold text-lg mb-4 block">Notifications</a>
     </li>
     <li>
         <a href="" class="font-bold text-lg mb-4 block">Messages</a>
-    </li>
+    </li> --}}
     <li>
         <a href="{{ current_user() ? route('profile', current_user()) : route('login') }}" class="font-bold text-lg mb-4 block">Profile</a>
     </li>
