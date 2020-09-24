@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Models\Like;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
 
 trait Likable
@@ -11,8 +12,12 @@ trait Likable
 
     public function scopeWithLikes(Builder $query)
     {
+        $subquery = DB::table('likes')
+            ->select('tweet_id', DB::raw('COUNT(id) as likes'))
+            ->groupBy('tweet_id');
+
         $query->leftJoinSub(
-            'select tweet_id, COUNT(id) likes from likes group by tweet_id',
+            $subquery,
             'likes',
             'likes.tweet_id',
             'tweets.id'
