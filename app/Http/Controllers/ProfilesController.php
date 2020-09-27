@@ -31,8 +31,6 @@ class ProfilesController extends Controller
 
     public function update()
     {
-
-        // dd(request());
         $user = current_user();
 
         $attributes = request()->validate([
@@ -45,7 +43,7 @@ class ProfilesController extends Controller
 
         if ( !empty(request('password')) ){
             $attributes['password'] = request()->validate([
-                'password' => ['string', 'min:5', 'max:255', 'confirmed']
+                'password' => ['string', 'min:8', 'max:255', 'confirmed']
             ])['password'];
         }
 
