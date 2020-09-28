@@ -16,10 +16,10 @@
 
         <form method="POST" action="{{ route('like', $tweet->id) }}">
             @csrf
-            @if ($tweet->isLikedByUser())
+            @if (current_user() && $tweet->isLikedByUser())
                 @method('DELETE')
             @endif
-            <button type="submit" class="flex items-center {{ $tweet->isLikedByUser() ? 'text-blue-500' : 'text-gray-500' }}">
+            <button type="submit" class="flex items-center {{ current_user() && $tweet->isLikedByUser() ? 'text-blue-500' : 'text-gray-500' }}">
                 <a class="mr-1">Like!</a>
                 <span class="text-xs">{{ $tweet->likes ?: 0 }}</span>
             </button>
