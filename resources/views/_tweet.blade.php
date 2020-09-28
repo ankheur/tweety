@@ -20,18 +20,21 @@
                 @method('DELETE')
             @endif
             <button type="submit" class="flex items-center {{ current_user() && $tweet->isLikedByUser() ? 'text-blue-500' : 'text-gray-500' }}">
-                <a class="mr-1">Like!</a>
-                <span class="text-xs">{{ $tweet->likes ?: 0 }}</span>
+                <a class="mr-1"><i class="{{ current_user() && $tweet->isLikedByUser() ? 'fas' : 'far' }} fa-thumbs-up"></i></a>
+                <span>{{ $tweet->likes ?: 0 }}</span>
             </button>
         </form>
     </div>
+
+    @auth
     <div>
         <form method="POST" action="{{ route('delete_tweet', $tweet->id) }}">
             @csrf
             @method('DELETE')
             <button type="submit">
-                <a class="mr-1">Delete</a>
+                <a class="mr-1"><i class="far fa-trash-alt"></i></a>
             </button>
         </form>
     </div>
+    @endauth
 </div>
