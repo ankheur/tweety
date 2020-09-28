@@ -4,7 +4,7 @@
             <img src="{{ $tweet->user->avatar }}" alt="" class="rounded-full mr-2" width="50" height="50">
         </a>
     </div>
-    <div class="">
+    <div class="flex-grow">
         <div class="flex items-center mb-4">
             <h5 class="font-bold mr-2"><a href="{{ route('profile', $tweet->user) }}">{{ $tweet->user->name }}</a></h5>
             <p class="text-sm text-gray-600">{{ '@' . $tweet->user->username }} · {{ $tweet->created_at->diffForHumans() }}</p>
@@ -22,6 +22,15 @@
             <button type="submit" class="flex items-center {{ $tweet->isLikedByUser() ? 'text-blue-500' : 'text-gray-500' }}">
                 <a class="mr-1">Like!</a>
                 <span class="text-xs">{{ $tweet->likes ?: 0 }}</span>
+            </button>
+        </form>
+    </div>
+    <div>
+        <form method="POST" action="{{ route('delete_tweet', $tweet->id) }}">
+            @csrf
+            @method('DELETE')
+            <button type="submit">
+                <a class="mr-1">Delete</a>
             </button>
         </form>
     </div>

@@ -33,4 +33,12 @@ class TweetsController extends Controller
     
         return back();
     }
+
+
+    public function destroy(Tweet $tweet) 
+    {
+        $tweet->delete();
+
+        return back();
+    }
 }

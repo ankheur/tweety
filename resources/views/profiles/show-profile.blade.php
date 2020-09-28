@@ -12,12 +12,12 @@
             <div style="max-width: 270px">
                 <h2 class="font-bold text-2xl mb-0">{{ $user->name }}</h2>
                 <h3 class="italic mb-2">{{ '@' . $user->username }}</h3>
-                <p class="text-xs">Since {{ $user->created_at->format('F Y') }}</p>
+                <p class="text-xs">{{ __('profile.Since') }} {{ $user->created_at->formatLocalized('%B %Y') }}</p>
             </div>
 
             <div class="flex">
                 @can ('update', $user)
-                <a href="profile/edit" class="rounded-full border border-gray-300 py-2 px-4 text-black text-xs mr-2">Edit Profile</a>
+                <a href="profile/edit" class="rounded-full border border-gray-300 py-2 px-4 text-black text-xs mr-2">{{ __('profile.Edit') }}</a>
                 @endcan
 
                 <x-follow-button :user="$user"></x-follow-button>
@@ -28,6 +28,10 @@
             {{ $user->biography }}
         </p>
     </header>
+
+    @can ('update', $user)
+        @include('_publish-tweet-panel')
+    @endcan
 
     @include('_timeline', [
         'tweets' => $tweets
